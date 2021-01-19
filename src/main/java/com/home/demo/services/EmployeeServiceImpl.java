@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   private EmployeeRepository employeeRepository;
 
   @Override
-  @Cacheable(cacheNames = "employees")
+  @Cacheable(cacheNames = "employees", key="#root.method.name")
   public List<Employee> getEmployees() {
     log.info("Fetching all employees from DB.."); //This log will not be printed to console, if data is fetched from cache. That's how we check where data is coming from.
     return employeeRepository.findAll();
